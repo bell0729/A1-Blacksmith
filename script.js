@@ -11,10 +11,12 @@ const status = document.querySelector("#forge-status")
 const $image = document.querySelector("#forge-image")
 const $log = document.querySelector("#action-message")
 const $heading = document.querySelector("#forge-heading")
+const forgeTop = document.querySelector(".forge-top")
 // 2. Create the two state variables: heat and swords made.
 let heat = 20
 let sword = 0
 status.textContent = "Too cold to craft"
+forgeTop.classList.remove("is-cold", "is-ready", "is-roaring")
 // 3. Write getForgeStatus(heatValue). Return the correct status string.
 
 function getForgeStatus(heatValue){
@@ -39,14 +41,18 @@ function updateForge(){
     if(heat < 30){
         $image.setAttribute("src", "assets/forge-cold.svg")
         $image.setAttribute("alt", "A stone forge")
+        forgeTop.classList.add("is-cold")
+
     }
     else if(heat < 70 && heat >= 30){
         $image.setAttribute("src", "assets/forge-ready.svg")
         $image.setAttribute("alt", "A stone forge with a small fire inside")
+        forgeTop.classList.add("is-ready")
     }
     else{
         $image.setAttribute("src", "assets/forge-roaring.svg")
         $image.setAttribute("alt", "A stone forge with a large fire inside")
+        forgeTop.classList.add("is-roaring")
     }
 }
 // 5. Write resetForge(). Restore the state, message, and display.
@@ -78,6 +84,7 @@ function makeSword(){
     else{
         $log.textContent = "You don't have enough heat to make a sword"
     }
+    forgeTop.classList.remove("is-cold", "is-ready", "is-roaring")
     updateForge()
 }
 // 8. Call resetForge() once to start the game.
