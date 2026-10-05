@@ -60,6 +60,7 @@ function resetForge(){
     heat = 20
     sword = 0
     $log.textContent = "Welcome to the forge. Add heat to begin."
+    forgeTop.classList.remove("is-cold", "is-ready", "is-roaring")
     updateForge()
 }
 // 6. Write heatForge(amount). Add heat, cap it, and update the page.
